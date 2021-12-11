@@ -19,6 +19,14 @@ def success():
         # return f"{message} from login app."
         return render_template('home.html')
 
+@app.route('/minutes', methods=["POST", "GET"])
+def result():
+    if request.method == "POST":
+        # message = request.form
+        # print(message["email"])
+        # return f"{message} from login app."
+        return render_template('result.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

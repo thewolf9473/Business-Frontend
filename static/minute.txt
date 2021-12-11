@@ -1,0 +1,56 @@
+Date: 2021-12-08
+ATTENDEES: PERSON5, PERSON1, PERSON4, PERSON6, PERSON3, PERSON2
+
+
+SUMMARY- 
+-PERSON1 was in a call until the very last minute and his machine crashed, so he had to restart it
+-Now he can hear people again
+-His mother is writing the question for the German subti subti subtitle user study and she has some progress
+-PERSON4 started to write the deliverables and asked PERSON5 to do the transcripts of by German ASR f for the German transcriber
+-PERSON5 has just added the transcripts for the first 30 parts and for the next ten parts, but for some folders the audio format is wrong
+-PERSON1 and PERSON5 want to implement natural shortening in their models
+-PROJECT4 is not ready for speech translation
+-PERSON1, PERSON5, PERSON6 and PERSON3 are looking for a candidate for the PROJECT4 project
+-PERSON1, PERSON6 and PERSON3 are going to have a dry run of some past similar talks to (PROJECT2) (docs) tomorrow afternoon
+-PERSON3 got access to the platform yesterday
+-He will complete the presentation today
+-PERSON3 has to manually convert some audio files into a 16-cave format
+-The sound quality is a little worse when passed to the sound system
+-PERSON3 will send the numbers for PROJECT1 test set to PERSON1 today
+-PERSON3 will send PERSON1, PERSON2, and PERSON6 the files that are important for the Organization 4 (IWSLT) 2020
+-They will do the project 1 test for the two domains tomorrow
+-PERSON6 is not taking part in the call with PERSON11
+-PERSON6's model works on some (ASR)
+-It converts the audio files into phonemes
+-The performance of dix (description) was the same with and without adding the pronunciations in their dictionaries
+-There is a lot of noise in the dictionary
+-PERSON6 and PERSON2 are trying to figure out how to use it
+-PERSON2 is finishing training of German ASR that may be used for time stamping
+-It's not ready for two big custom dictionaries
+-There are some serious errors in the ASR output
+-PERSON1, PERSON2, PERSON4, PERSON7 and PERSON3 need to split the work among themselves so that PERSON3 can manage it in time
+-PERSON1 wants the ASR numbers today and the improved numbers on Monday
+-On Monday, PERSON6 is going to do more of an adaptation for both the different tasks
+-On the other hand, during the month of August, the rainbow workers performed better than the empty models
+-PERSON5 is having problems with the files
+-The transcripts for some folders are not the right length, so they were processed incorrectly
+-The files are not in the right format
+-PERSON5 is working on the German ASR
+-There is a problem with the length of some of the files that she transcribes
+-She will change the conversing to SOX
+-She is saving the files so she can run the interpreter in parallel
+-PERSON2 and PERSON4 are working on a speech
+-Some of the files don't have punctuation
+-In some of them, you don't just hear the interpreter, but also hear the person saying something in English in the background
+-It's picking up the wrong person
+-PERSON6 is having problems with the pronunciation of some words in his native language
+-Person2 sends him a link to a package of the language, but some of the phonemes are not in the alphabet
+-Person6 is afraid that when processing the list of graphemes to
+-PERSON6 and PERSON2 are trying to create variable pronunciations in a chat
+-They need to substitute each word with a different phoneme
+-PERSON2 and PERSON6 are going to have a call tomorrow
+-PERSON2 will send a translation of a dictionary to (CMU) and a test run with PERSON3 that they were discussing
+-PERSON6 wants PERSON2 to convert the list into the CMU alphabet phonemes
+-Person2 will do it tomorrow
+
+Minuted by: Nidhir
