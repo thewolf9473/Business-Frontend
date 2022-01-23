@@ -20,7 +20,7 @@ def success():
 def result():
     if request.method == "POST":
         
-        sender = "nidbhavsar989@gmail.com"
+        sender = 
         receivers = request.form.get("email")
         receivers_name = request.form.get("name")
 
@@ -33,7 +33,7 @@ def result():
 
         server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
-        server.login(sender, "15004959@Nb")
+        server.login(sender, password)
         server.sendmail(sender, receivers, message.as_string())
 
         return render_template('result.html')
