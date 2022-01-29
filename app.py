@@ -3,6 +3,7 @@ import emails
 import random
 import string
 from flask import Flask, render_template, request
+import requests
 import smtplib
 from email.mime.text import MIMEText
 from mail_generator import generate_mail
@@ -18,6 +19,9 @@ def index():
 @app.route('/success', methods=["POST", "GET"])
 def success():
     if request.method == "POST":
+        req = requests.post('http://localhost:8000',
+                            params={'data': 'nidhir ka'})
+        print(req.text)
         return render_template('home.html')
 
 
@@ -60,10 +64,8 @@ def result():
             }
         )
 
-        print(r.status_code)
-        print(file)
         return render_template('result.html')
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='127.0.0.1')
