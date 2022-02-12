@@ -1,15 +1,22 @@
+from concurrent.futures import process
 from email.mime import text
 import emails
 import random
 import string
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import requests
 import smtplib
 from email.mime.text import MIMEText
 from mail_generator import generate_mail
+from utilities import upload_to_aws
+import os
 
 app = Flask(__name__)
 
+app.config["MP3_UPLOADS"] = "static/images/uploads"
+def generate_process_code():
+    x = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(16))
+    return x
 
 @app.route('/')
 def index():
@@ -19,38 +26,38 @@ def index():
 @app.route('/success', methods=["POST", "GET"])
 def success():
     if request.method == "POST":
-        req = requests.post('http://localhost:8000',
-                            params={'data': 'nidhir ka'})
-        print(req.text)
         return render_template('home.html')
 
 
 @app.route('/minutes', methods=["POST", "GET"])
 def result():
     if request.method == "POST":
+        
+        sender = "deepconteam@gmail.com"
+        receivers = request.form.get("email")
+        file = request.files["audio"]
+        file.save(os.path.join(app.config["MP3_UPLOADS"], file.filename))
+        file_path = "static/images/uploads/{}".format(file.filename)
+        print("-------------file path -------------- ", file_path)
+        
+            
+        receivers_name = request.form.get("name")
+        process_code = generate_process_code()
+
+        subject, text = generate_mail(receivers_name, process_code)
+        res = upload_to_aws(file_path, file_name=process_code )
+        print(res)
+       
 
         message = emails.html(
-            html="<h1>This is an email</h1><strong>We love sending emails</strong>",
-            subject="Hey, look in here!",
-            mail_from="deepconteam@gmail.com",
+            text=text,
+            subject=subject,
+            mail_from=sender,
         )
-        # sender = "deepconteam@gmail.com"
-        receivers = request.form.get("email")
-        file = request.form.get("file")
-        # receivers_name = request.form.get("name")
-
-        # subject, text = generate_mail(receivers_name)
-        # message = MIMEText(text)
-
-        # message['Subject'] = subject
-        # message['From'] = sender
-        # message['To'] = receivers
-
-        # server = smtplib.SMTP(
-        #     "email-smtp.ap-south-1.amazonaws.com", 587)
-        # server.starttls()
-        # server.login(sender, "BFuujoxH6uJA3RYSZDIUDII3XTxJr4ReQweABpINju70")
-        # server.sendmail(sender, receivers, message.as_string())
+        
+        req = requests.post('http://localhost:8000/getcode',
+                            params={'process_code': process_code})
+     
 
         r = message.send(
             to=receivers,
@@ -68,4 +75,4 @@ def result():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1')
+    app.run(host='0.0.0.0', port=3000)

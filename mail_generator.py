@@ -5,9 +5,9 @@ def generate_process_code():
     x = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(16))
     return x
 
-def generate_mail(user_name="user"):
+def generate_mail(user_name="user", process_code=""):
 
-    process_code = generate_process_code()
+    # process_code = generate_process_code()
     SUBJECT = "[ALERT] DeepCon upload process code."
     TEXT = f"Hello {user_name}, We're glad that you've chosen DeepCon. Here is your process code: {process_code}"
 
