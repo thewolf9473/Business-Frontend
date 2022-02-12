@@ -1,12 +1,8 @@
-from concurrent.futures import process
-from email.mime import text
 import emails
 import random
 import string
 from flask import Flask, render_template, request, redirect
 import requests
-import smtplib
-from email.mime.text import MIMEText
 from mail_generator import generate_mail
 from utilities import upload_to_aws
 import os

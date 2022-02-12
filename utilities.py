@@ -1,8 +1,8 @@
 import boto3
 from botocore.exceptions import NoCredentialsError
 
-ACCESS_KEY = "AKIA4QB2WTN5WMNEVGW5"
-SECRET_KEY = "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"
+ACCESS_KEY = "AKIA4QB2WTN52EI4GUHM"
+SECRET_KEY = "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"
 
 
 def upload_to_aws(local_file, file_name, bucket="deepcon"):
@@ -22,7 +22,3 @@ def upload_to_aws(local_file, file_name, bucket="deepcon"):
         print("Credentials not available")
         return False
 
-# bucket_name = "deepcon"
-# s3_file_name = "audio_file.txt"
-
-# uploaded = upload_to_aws('sample.txt', bucket_name, s3_file_name)
