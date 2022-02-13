@@ -1,8 +1,12 @@
 import boto3
 from botocore.exceptions import NoCredentialsError
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-ACCESS_KEY = "AKIA4QB2WTN52EI4GUHM"
-SECRET_KEY = "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"
+
+ACCESS_KEY = os.getenv("ACCESS_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 
 def upload_to_aws(local_file, file_name, bucket="deepcon"):

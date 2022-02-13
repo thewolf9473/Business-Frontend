@@ -6,8 +6,15 @@ import requests
 from mail_generator import generate_mail
 from utilities import upload_to_aws
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 app = Flask(__name__)
+
+EMAIL_USER = os.getenv("EMAIL_USER")
+EMAIL_USER_PASSWORD = os.getenv("EMAIL_USER_PASSWORD")
+
 
 app.config["MP3_UPLOADS"] = "static/images/uploads"
 def generate_process_code():
@@ -61,8 +68,8 @@ def result():
                 "host": "email-smtp.ap-south-1.amazonaws.com",
                 "port": 587,
                 "timeout": 5,
-                "user": "AKIA4QB2WTN5WRHMWS4U",
-                "password": "BFuujoxH6uJA3RYSZDIUDII3XTxJr4ReQweABpINju70",
+                "user": EMAIL_USER,
+                "password": EMAIL_USER_PASSWORD,
                 "tls": True,
             }
         )
