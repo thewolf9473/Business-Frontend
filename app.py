@@ -6,6 +6,7 @@ import requests
 from mail_generator import generate_mail
 from utilities import upload_to_aws
 import os
+import asyncio, httpx
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -33,7 +34,7 @@ def success():
 
 
 @app.route('/minutes', methods=["POST", "GET"])
-def result():
+async def result():
     if request.method == "POST":
         
         sender = "deepconteam@gmail.com"
@@ -58,8 +59,18 @@ def result():
             mail_from=sender,
         )
         
-        req = requests.post('http://localhost:8000/getcode',
-                            params={'process_code': process_code})
+        try:
+        
+            # req = requests.post('http://server-service.default.svc.cluster.local:8000/getcode',
+            #                 params={'process_code': process_code})
+            
+            async with httpx.AsyncClient() as client:
+                res = await asyncio.gather(
+                    client.post('http://localhost:8000/getcode', params={'process_code': process_code})
+                )
+                # req = requests.post()
+        except:
+            print("microservice request not processed")
      
 
         r = message.send(
