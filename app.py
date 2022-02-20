@@ -66,7 +66,7 @@ async def result():
             
             async with httpx.AsyncClient() as client:
                 res = await asyncio.gather(
-                    client.post('http://localhost:8000/getcode', params={'process_code': process_code})
+                    client.post('http://server-service.default.svc.cluster.local:8000/getcode', params={'process_code': process_code})
                 )
                 # req = requests.post()
         except:
