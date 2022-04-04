@@ -8,6 +8,7 @@ from utilities import upload_to_aws
 import os
 import asyncio, httpx
 from dotenv import load_dotenv
+from database_handler import insert_values
 load_dotenv()
 
 
@@ -48,16 +49,22 @@ async def result():
         try:
             
             async with httpx.AsyncClient() as client:
-                params_dict = {'process_code': process_code, 
-                               'receiver_email': receivers,
-                               'receiver_name': receivers_name
-                               }
-            res = await asyncio.gather(
-                    client.post('http://localhost:8000/getcode', params= params_dict)
-                )
+                    params_dict = {'process_code': process_code, 
+                                'receiver_email': receivers,
+                                'receiver_name': receivers_name
+                                }
+                    res = await asyncio.gather(
+                            client.post('http://localhost:8000/getcode', params= params_dict)
+                    )
+                    
         except:
             print("microservice request not processed")
             
+        insert_values(process_code= process_code,
+                      receiver_name= receivers_name,
+                      receiver_email= receivers,
+                      )
+        
         email_res = send_email(process_code=process_code, 
                                    receiver_email= receivers, 
                                    receivers_name= receivers_name,
