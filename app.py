@@ -65,8 +65,13 @@ async def result():
             #                 params={'process_code': process_code})
             
             async with httpx.AsyncClient() as client:
+                params_dict = {'process_code': process_code, 
+                               'receiver_email': receivers,
+                               'receiver_name': receivers_name
+                               }
+                print(params_dict)
                 res = await asyncio.gather(
-                    client.post('http://localhost:8000/getcode', params={'process_code': process_code})
+                    client.post('http://localhost:8000/getcode', params= params_dict)
                     # client.post('http://server-service.default.svc.cluster.local:8000/getcode', params={'process_code': process_code})
                 )
                 # req = requests.post()
