@@ -11,7 +11,6 @@ def generate_process_code():
 
 def generate_mail(user_name="user", process_code=""):
 
-    # process_code = generate_process_code()
     SUBJECT = "[ALERT] DeepCon upload process code."
     TEXT = f"Hello {user_name}, We're glad that you've chosen DeepCon. Here is your process code: {process_code}"
 
@@ -43,8 +42,6 @@ def send_email(receivers_name, process_code, receiver_email, sender):
                 "tls": True,
             }
         )
-    
-    print(r)
     
     return r
 
