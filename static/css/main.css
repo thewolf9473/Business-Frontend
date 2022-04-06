@@ -271,6 +271,26 @@ iframe {
   margin-bottom: 3em;
 }
 
+.wrap-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  grid-column-gap: 1em;
+  margin-bottom: 3em;
+}
+
+.wrap-radio {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  grid-column-gap: 1em;
+  margin-bottom: 3em;
+}
+
 .input100 {
   font-family: Poppins-Medium;
   font-size: 15px;
