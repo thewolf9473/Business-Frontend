@@ -3,5 +3,3 @@ __MACOSX
 my_env
 __pycache__
 .env
-static/images/uploads/*
-audio
