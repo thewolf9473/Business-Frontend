@@ -9,7 +9,7 @@ import os
 import asyncio
 import httpx
 from dotenv import load_dotenv
-from database_handler import insert_values
+from database_handler import insert_values, get_result
 load_dotenv()
 
 
@@ -35,7 +35,6 @@ def success():
         return render_template('home.html')
 
 
-
 @app.route('/minutes', methods=["POST", "GET"])
 async def result():
     if request.method == "POST":
@@ -43,6 +42,11 @@ async def result():
         sender = "deepconteam@gmail.com"
         receivers = request.form.get("email")
         file = request.files["audio"]
+        translation = ' '.join(request.form.getlist('Translation'))
+        length = request.form.get('length')
+        num_speakers = request.form.get('num-speakers')
+        print('length', length)
+        print('translation checkbox ', translation)
         file.save(os.path.join(app.config["MP3_UPLOADS"], file.filename))
         file_path = "static/images/uploads/{}".format(file.filename)
         print("-------------file path -------------- ", file_path)
@@ -55,7 +59,10 @@ async def result():
             async with httpx.AsyncClient() as client:
                 params_dict = {'process_code': process_code,
                                'receiver_email': receivers,
-                               'receiver_name': receivers_name
+                               'receiver_name': receivers_name,
+                               'translation': translation,
+                               'length': length,
+                               'num_speakers': num_speakers
                                }
                 res = await asyncio.gather(
                     client.post('http://localhost:8000/getcode',
@@ -75,7 +82,22 @@ async def result():
                                receivers_name=receivers_name,
                                sender=sender)
 
-        return render_template('greetings.html')
+        return render_template('result.html')
+
+
+@app.route('/get-transcript')
+def sample():
+    return render_template('result.html')
+
+
+@app.route('/get-transcript', methods=["POST", "GET"])
+def my_form_post():
+    if request.method == 'POST':
+        process_code = request.form.get('Process_code')
+        url = get_result(process_code)
+    return render_template('result.html', url=url)
+
+# @app.route('/get-transcript', methods=["POST", "GET"])
 
 
 if __name__ == '__main__':

@@ -233,6 +233,22 @@ iframe {
   padding: 2em;
 }
 
+.wrap-iframe {
+  width: 960px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2em;
+}
+
 /*------------------------------------------------------------------
 [  ]*/
 
@@ -283,7 +299,16 @@ iframe {
 
 .wrap-radio {
   display: grid;
-  grid-template-columns: 5fr 1fr 1fr 1fr;
+  grid-template-columns: 4fr 1fr 1fr 1fr;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  grid-column-gap: 1em;
+  margin-bottom: 3em;
+}
+.wrap-checkbox {
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr 1fr 1fr 1fr;
   position: relative;
   width: 100%;
   z-index: 1;

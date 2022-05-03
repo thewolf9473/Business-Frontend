@@ -23,7 +23,10 @@
 </head>
 <body>
 
+	<form class="login100-form validate-form" action="/get-transcript" method="post">
+
 	<div class="limiter">
+
 		<div class="container-login100">
 			<div class="wrap-result100">
 				<input class="result100" type="text" placeholder="Email">
@@ -34,7 +37,7 @@
 			</div>
 			&nbsp;&nbsp;&nbsp;
 			<div class="wrap-result100">
-				<input class="result100" type="text" id="text" placeholder="Process Code" onkeypress="handle(event)">
+				<input class="result100" type="text" name="Process_code" id="text" placeholder="Process Code" onkeypress="handle(event)">
 				<span class="focus-input100"></span>
 				<span class="symbol-input100">
 					<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -42,30 +45,29 @@
 			</div>
 			&nbsp;&nbsp;&nbsp;
 			<div class="wrap-result100">
-				<button type="submit" id="transcript_btn" class="result100-form-btn" onclick="download('static/transcript.txt')">
+				<!---<button type="submit" id="transcript_btn" class="result100-form-btn" onclick="download('static/transcript.txt')"> -->
+				<button type="submit" id="transcript_btn" class="result100-form-btn" value = "show_transcript", name = "download-button">
 					<i class="fa fa-download"></i> &nbsp; Transcript
 				</button>
 			</div>
-			<div class="wrap-login100" id="minute_div">
-                <div>
-                    <p>
-                        <iframe src="static/minute.txt" frameborder="0" height="500" width="100%"></iframe>
-                    </p>
-                </div>
+			<div class="wrap-iframe" id="minute_div">
+
+                 <iframe src="{{url}}" frameborder="0" height="500" width="100%"></iframe>
+
 			</div>
 		</div>
 	</div>
-	<button onclick="myFunc"></button>
+</form>
+
+	<button onclick="handle"></button>
 <script type="text/javascript">
 
-	document.getElementById("minute_div").style.display = "none";
-	document.getElementById("transcript_btn").disabled = true;
+
 
 	function handle(e){
 		var key=e.keyCode || e.which;
 		if (key==13){
 			document.getElementById("minute_div").style.display = "block";
-			document.getElementById("transcript_btn").disabled = false;
 		}
 	}
 
