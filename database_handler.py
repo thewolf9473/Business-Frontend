@@ -29,12 +29,12 @@ def insert_values(receiver_name: str, receiver_email: str, process_code: str):
     return status
 
 
-def generate_result(transcript_link, minute_link, translated_output, languages, user_name="user", process_code=""):
+def generate_result(transcript_link, minute_link, keyword_link, translated_output, languages, user_name="user", process_code=""):
 
     names_list = []
     link_list = []
-    names_list.extend(['Transcripts', 'Minutes'])
-    link_list.extend([transcript_link, minute_link])
+    names_list.extend(['Transcripts', 'Minutes', 'Keywords'])
+    link_list.extend([transcript_link, minute_link, keyword_link])
     # process_code = generate_process_code()
     translated_str = "  "
     for lang, output in zip(languages, translated_output):
@@ -57,6 +57,7 @@ def get_result(process_code: str):
     for x in mydoc:
         transcript_link = x["processed_transcript_link"]
         minute_link = x['processed_minutes_link']
+        keyword_link = x['processed_keywords_link']
         user_name = x['name']
         languages = x['languages'].split()
         print(languages)
@@ -67,6 +68,7 @@ def get_result(process_code: str):
                 x[f'processed_{j}_translated_minutes_link'])
         zip_list = generate_result(transcript_link=transcript_link,
                                    minute_link=minute_link,
+                                   keyword_link=keyword_link,
                                    translated_output=translated_output,
                                    languages=languages,
                                    process_code=process_code,
