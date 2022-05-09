@@ -238,6 +238,7 @@ iframe {
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
+  margin-top: 0px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;

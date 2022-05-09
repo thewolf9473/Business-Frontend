@@ -1,3 +1,4 @@
+from concurrent.futures import process
 import emails
 import random
 import string
@@ -10,6 +11,9 @@ import asyncio
 import httpx
 from dotenv import load_dotenv
 from database_handler import insert_values, get_result, authenticate_login
+import jinja2
+env = jinja2.Environment()
+env.globals.update(zip=zip)
 load_dotenv()
 
 
@@ -103,8 +107,9 @@ def sample():
 def my_form_post():
     if request.method == 'POST':
         process_code = request.form.get('Process_code')
-        url = get_result(process_code)
-    return render_template('result.html', url=url)
+        ziped_list, process_code, user_name = get_result(process_code)
+    return render_template('result.html', list=ziped_list, process_code=process_code, user_name=user_name)
+
 
 # @app.route('/get-transcript', methods=["POST", "GET"])
 

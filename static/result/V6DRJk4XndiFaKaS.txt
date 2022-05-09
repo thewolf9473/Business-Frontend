@@ -1,0 +1,11 @@
+Hello user, We're glad that you've chosen DeepCon. your processing of request is completed and you can download files here. Please find the information below: 
+
+    * Your Request Number: V6DRJk4XndiFaKaS
+
+    * Transcript Link: https://deepcon-processed-minutes.s3.ap-south-1.amazonaws.com/transcripts_V6DRJk4XndiFaKaS
+
+    * Minutes Link: https://deepcon-processed-minutes.s3.ap-south-1.amazonaws.com/minutes_V6DRJk4XndiFaKaS
+     
+* Translated fr minutes: https://deepcon-processed-minutes.s3.ap-south-1.amazonaws.com/translated_fr_V6DRJk4XndiFaKaS
+* Translated de minutes: https://deepcon-processed-minutes.s3.ap-south-1.amazonaws.com/translated_de_V6DRJk4XndiFaKaS
+* Translated hi minutes: https://deepcon-processed-minutes.s3.ap-south-1.amazonaws.com/translated_hi_V6DRJk4XndiFaKaS

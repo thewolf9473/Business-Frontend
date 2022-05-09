@@ -37,7 +37,7 @@
 			</div>
 			&nbsp;&nbsp;&nbsp;
 			<div class="wrap-result100">
-				<input class="result100" type="text" name="Process_code" id="text" placeholder="Process Code" onkeypress="handle(event)">
+				<input class="result100" type="text" name="Process_code" id="text" placeholder="Process Code">
 				<span class="focus-input100"></span>
 				<span class="symbol-input100">
 					<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -46,13 +46,31 @@
 			&nbsp;&nbsp;&nbsp;
 			<div class="wrap-result100">
 				<!---<button type="submit" id="transcript_btn" class="result100-form-btn" onclick="download('static/transcript.txt')"> -->
-				<button type="submit" id="transcript_btn" class="result100-form-btn" value = "show_transcript", name = "download-button">
+				<button type="submit" id="transcript_btn" class="result100-form-btn" value = "show_transcript", name = "download-button", onclick="handle(event)">
 					<i class="fa fa-download"></i> &nbsp; Transcript
 				</button>
 			</div>
-			<div class="wrap-iframe" id="minute_div">
+			<div class="wrap-iframe" id="minute_div" >
 
-                 <iframe src="{{url}}" frameborder="0" height="500" width="100%"></iframe>
+				<ul id="listWithHandle">
+					<li>
+							<span class="my-handle"></span>
+							<input type="hidden" name="handles[]" value="{{ name }}"/> {{ process_code }}
+					</li>
+					<li>
+							<span class="my-handle"></span>
+							<input type="hidden" name="handles[]" value="{{ name }}"/> {{ user_name }}
+					</li>
+					{% for name, link in list %}
+						<li>
+							
+							<a type="hidden" name="handles[]"  value="{{ name }}"/> {{ name }}
+							<a href="{{ link }}"><i class="fa fa-download" aria-hidden="true"></i></a>
+						</li>
+					{% endfor %}
+				  </ul>
+
+                 <!--- <iframe src="{{url}}" frameborder="0" height="500" width="100%"></iframe> -->
 
 			</div>
 		</div>
@@ -65,19 +83,7 @@
 
 
 	function handle(e){
-		var key=e.keyCode || e.which;
-		if (key==13){
 			document.getElementById("minute_div").style.display = "block";
-		}
-	}
-
-	function download(url){
-		const a = document.createElement("a")
-		a.href = url
-		a.download = url.split("/").pop()
-		document.body.appendChild(a)
-		a.click()
-		document.body.removeChild(a)
 	}
 </script>
 
