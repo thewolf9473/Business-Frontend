@@ -9,7 +9,7 @@ import os
 import asyncio
 import httpx
 from dotenv import load_dotenv
-from database_handler import insert_values, get_result
+from database_handler import insert_values, get_result, authenticate_login
 load_dotenv()
 
 
@@ -31,8 +31,17 @@ def index():
 
 @app.route('/success', methods=["POST", "GET"])
 def success():
+    template = 'nologin.html'
     if request.method == "POST":
-        return render_template('home.html')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        print("email: ", email)
+        print("password: ", password)
+        auth = authenticate_login(email, password)
+        print('auth:', auth)
+        if auth:
+            template = 'home.html'
+    return render_template(template)
 
 
 @app.route('/minutes', methods=["POST", "GET"])
@@ -82,7 +91,7 @@ async def result():
                                receivers_name=receivers_name,
                                sender=sender)
 
-        return render_template('result.html')
+        return render_template('greetings.html')
 
 
 @app.route('/get-transcript')

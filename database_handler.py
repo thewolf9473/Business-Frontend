@@ -75,3 +75,21 @@ def get_result(process_code: str):
                                process_code=process_code)
 
     return text
+
+
+def authenticate_login(email, password):
+    client = MongoClient(
+        "mongodb+srv://Majorcms:Majorcms@khoj.nqwbp.mongodb.net/khoj?retryWrites=true&w=majority")
+    db = client.MajorCMS
+    collection = db.Login
+    myquery = {"email": email}
+    mydoc = collection.find(myquery)
+    for x in mydoc:
+        true_pass = x["password"]
+        print('true pass: ', true_pass)
+        if password == true_pass:
+            print('authentication successfull')
+            return True
+        else:
+            print('authentication not successfull')
+            return False
