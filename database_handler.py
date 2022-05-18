@@ -29,16 +29,28 @@ def insert_values(receiver_name: str, receiver_email: str, process_code: str):
     return status
 
 
-def generate_result(transcript_link, minute_link, keyword_link, translated_output, languages, user_name="user", process_code=""):
+def generate_result(transcript_link, minute_link, keyword_link, translated_output, keyword_translated_output, languages, user_name="user", process_code=""):
 
     names_list = []
     link_list = []
-    names_list.extend(['Transcripts', 'Minutes', 'Keywords'])
+    name_dict = {"fr": "French",
+                 "de": "German",
+                 "ru": "Russian",
+                 "hi": "Hindi",
+                 "it": "Italian"}
+    names_list.extend(
+        ['English Transcripts', 'English Minutes', 'English Keywords'])
     link_list.extend([transcript_link, minute_link, keyword_link])
     # process_code = generate_process_code()
     translated_str = "  "
     for lang, output in zip(languages, translated_output):
-        names_list.append(lang)
+        lang_ = name_dict[lang]
+        names_list.append(f'{lang_} Minutes')
+        link_list.append(output)
+
+    for lang, output in zip(languages, keyword_translated_output):
+        lang_ = name_dict[lang]
+        names_list.append(f'{lang_} Keywords')
         link_list.append(output)
 
     return list(zip(names_list, link_list))
@@ -54,6 +66,7 @@ def get_result(process_code: str):
     myquery = {"process_code": process_code}
     mydoc = collection.find(myquery)
     translated_output = []
+    keyword_output = []
     for x in mydoc:
         transcript_link = x["processed_transcript_link"]
         minute_link = x['processed_minutes_link']
@@ -66,12 +79,15 @@ def get_result(process_code: str):
             print(j)
             translated_output.append(
                 x[f'processed_{j}_translated_minutes_link'])
+            keyword_output.append(
+                x[f'processed_{j}_translated_keywords'])
         zip_list = generate_result(transcript_link=transcript_link,
                                    minute_link=minute_link,
                                    keyword_link=keyword_link,
                                    translated_output=translated_output,
                                    languages=languages,
                                    process_code=process_code,
+                                   keyword_translated_output=keyword_output,
                                    user_name=user_name)
     code = f'Process code: {process_code}'
     name = f'User Name: {user_name}'
