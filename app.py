@@ -8,6 +8,7 @@ from mail_generator import send_email
 from utilities import upload_to_aws
 import os
 import asyncio
+import time
 import httpx
 from dotenv import load_dotenv
 from database_handler import insert_values, get_result, authenticate_login
@@ -24,7 +25,7 @@ app.config["MP3_UPLOADS"] = "static/images/uploads"
 
 def generate_process_code():
     x = ''.join(random.choice(string.ascii_uppercase +
-                string.ascii_lowercase + string.digits) for _ in range(16))
+                string.ascii_lowercase + string.digits) for _ in range(4))
     return x
 
 
@@ -60,12 +61,14 @@ async def result():
         num_speakers = request.form.get('num-speakers')
         print('length', length)
         print('translation checkbox ', translation)
+        frontend_start_time = time.time()
         file.save(os.path.join(app.config["MP3_UPLOADS"], file.filename))
         file_path = "static/images/uploads/{}".format(file.filename)
         print("-------------file path -------------- ", file_path)
         receivers_name = request.form.get("name")
         process_code = generate_process_code()
         res = upload_to_aws(file_path, file_name=process_code)
+        
 
         try:
 
@@ -75,12 +78,15 @@ async def result():
                                'receiver_name': receivers_name,
                                'translation': translation,
                                'length': length,
-                               'num_speakers': num_speakers
+                               'num_speakers': num_speakers,
+                               'frontend_start_time':frontend_start_time
                                }
                 res = await asyncio.gather(
-                    client.post('http://localhost:8000/getcode',
+                    client.post('http://server-service.default.svc.cluster.local:8000/getcode',
                                 params=params_dict)
                 )
+                
+                print("---------------------------------------------------------API-Working--------------------------------------------------------------")
 
         except:
             print("microservice request not processed")

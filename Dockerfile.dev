@@ -10,4 +10,5 @@ RUN pip install -r Requirements.txt
 COPY . .
 
 ENTRYPOINT [ "python3" ]
+# CMD ["./wait-for-it.sh", "python", "app.py"]
 CMD ["app.py"]

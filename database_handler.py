@@ -29,7 +29,7 @@ def insert_values(receiver_name: str, receiver_email: str, process_code: str):
     return status
 
 
-def generate_result(transcript_link, minute_link, keyword_link, translated_output, keyword_translated_output, transcripts_translated_output, languages, user_name="user", process_code=""):
+def generate_result(transcript_link, minute_link, keyword_link, translated_output, keyword_translated_output, languages, user_name="user", process_code=""):
 
     names_list = []
     link_list = []
@@ -44,10 +44,10 @@ def generate_result(transcript_link, minute_link, keyword_link, translated_outpu
     # process_code = generate_process_code()
     translated_str = "  "
     
-    for lang, output in zip(languages, transcripts_translated_output):
-        lang_ = name_dict[lang]
-        names_list.append(f'{lang_} Transcripts')
-        link_list.append(output)
+    # for lang, output in zip(languages, transcripts_translated_output):
+    #     lang_ = name_dict[lang]
+    #     names_list.append(f'{lang_} Transcripts')
+    #     link_list.append(output)
     
     for lang, output in zip(languages, translated_output):
         lang_ = name_dict[lang]
@@ -71,7 +71,7 @@ def get_result(process_code: str):
 
     myquery = {"process_code": process_code}
     mydoc = collection.find(myquery)
-    transcript_output = []
+    # transcript_output = []
     translated_output = []
     keyword_output = []
     for x in mydoc:
@@ -88,8 +88,8 @@ def get_result(process_code: str):
                 x[f'processed_{j}_translated_minutes_link'])
             keyword_output.append(
                 x[f'processed_{j}_translated_keywords'])
-            transcript_output.append(
-                x[f'processed_{j}_translated_transcripts'])
+            # transcript_output.append(
+            #     x[f'processed_{j}_translated_transcripts'])
         zip_list = generate_result(transcript_link=transcript_link,
                                    minute_link=minute_link,
                                    keyword_link=keyword_link,
@@ -97,7 +97,6 @@ def get_result(process_code: str):
                                    languages=languages,
                                    process_code=process_code,
                                    keyword_translated_output=keyword_output,
-                                   transcripts_translated_output = transcript_output,
                                    user_name=user_name)
     code = f'Process code: {process_code}'
     name = f'User Name: {user_name}'

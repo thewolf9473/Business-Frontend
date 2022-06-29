@@ -6,7 +6,8 @@ import os
 
 
 def generate_process_code():
-    x = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(16))
+    x = ''.join(random.choice(string.ascii_uppercase +
+                string.ascii_lowercase + string.digits) for _ in range(4))
     return x
 
 def generate_mail(user_name="user", process_code=""):
