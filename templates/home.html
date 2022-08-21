@@ -30,50 +30,50 @@
 
 
 				<form class="login100-form validate-form" action="/minutes" method="post" enctype="multipart/form-data">	
-					<span class="login100-form-title">
+					<!-- <span class="login100-form-title">
 						Upload Audio file
                         <p>.MP3, .MP4 and .WAV</p>
 
-					</span>
+					</span> -->
                    
 					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="email" placeholder="Email"/>
+						<input class="input100" type="text" name="query" placeholder="Query"/>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 					</div>
 
-					<div class="wrap-container validate-input">
+					<!-- <div class="wrap-container validate-input">
 						<input class="input100" type="text" name="name" placeholder="Name"/>
 						<input class="input100" type="text" name="num-speakers" placeholder="number of speakers"/>
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-user circle" aria-hidden="true"></i>
 						</span>
-					</div>
+					</div> -->
 
 					
 					<div class="wrap-radio validate-input">
 						<span>
-							<label><b>Select length of the minutes </b></label>
+							<label><b>The query is related to </b></label>
 							</span>
 						<span>
-							<input type="radio" id="length_short" name="length" value="short"/>
-  							<label for="html"/>Short</label></br>
+							<input type="radio" id="length_short" name="querytype" value="stocks"/>
+  							<label for="html"/>Stocks</label></br>
 						</span>
 						<span>
-							<input type="radio" id="length_medium" name="length" value="medium" checked/>
-  							<label for="html"/>Medium</label></br>
+							<input type="radio" id="length_medium" name="querytype" value="crypto" checked/>
+  							<label for="html"/>Crypto</label></br>
 						</span>
 						<span>
-							<input type="radio" id="length_long" name="length" value="long"/>
-  							<label for="html"/>Long</label></br>
+							<input type="radio" id="length_long" name="querytype" value="funds"/>
+  							<label for="html"/>Funds</label></br>
 						</span>
   						
 					</div>
 
-					<div class="wrap-checkbox validate-input">
+					<!-- <div class="wrap-checkbox validate-input">
 						<span>
 							<label><b> Translate Minutes to </b></label>
 						</span>
@@ -97,11 +97,11 @@
 							<input type="Checkbox" id="translation_russian" name="Translation" value="ru"/>
 							<label for="html"/>Russian</label></br>
 						</span>
-					</div>
+					</div> -->
 					
-					<div class="wrap-input100">
+					<!-- <div class="wrap-input100">
 						<input type="file" name="audio" id="audio"/>
-					</div>
+					</div> -->
 				
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">
